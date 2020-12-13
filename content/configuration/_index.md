@@ -185,3 +185,57 @@ This flag is directly used to configure `InsecureSkipVerify` in [golang's tls
 package](https://golang.org/pkg/crypto/tls/).
 
 ---
+
+## `openid-provider-proxy`
+
+{{% details %}}
++ Environment Variable: None
++ Example: `http://proxy.example.com:80`
++ Required: No
++ Default: No proxy
++ Related: -
+{{% /details %}}
+
+Gatekeeper will use this proxy for requests to the OpenID provider, for example
+to reach the discovery url, to get tokens, etc.
+
+---
+
+## `openid-provider-timeout`
+
+{{% details %}}
++ Environment Variable: None
++ Example: `3s`, or `314ms`, (any string that can be parsed by [ParseDuration](https://golang.org/pkg/time/#ParseDuration)
++ Required: No
++ Default: `30s`
++ Related: -
+{{% /details %}}
+
+Timeout for pulling OpenID configuration from the OpenID provider. Will be
+parsed by [ParseDuration](https://golang.org/pkg/time/#ParseDuration).
+
+---
+
+## `base-uri`
+
+{{% details %}}
++ Environment Variable: `PROXY_BASE_URI`
++ Example: `/base-uri`
++ Required: No
++ Default: `""`
++ Related: -
+{{% /details %}}
+
+`base-uri` is the the base URI of your app. This is where your app lives at the
+domain, so if your domain is `https://www.example.com` and your app is at the
+path `https://www.example.com/app`, then base URI should be `/app`.
+
+This is used to
+
++ build oauth related paths, such as the `/logout` endpoint
++ set the [path for cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#Path_attribute:~:text=Path%20attribute,-The),
+  which determines which parts of your site the cookie is valid on, which in
+  turn determines if the user remains authenticated as they visit different
+  parts of the site
+
+---
