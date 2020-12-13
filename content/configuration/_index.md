@@ -6,7 +6,7 @@ weight: 1
 ## `listen`
 
 {{% details %}}
-+ Environment Variable: `LISTEN`
++ Environment Variable: `PROXY_LISTEN`
 + Example: `:80`
 + Required: Yes
 + Default: None
@@ -29,7 +29,7 @@ This config is passed to golang's `net.Listen()`, so use strings acceptable by `
 ## `listen-http`
 
 {{% details %}}
-+ Environment Variable: `LISTEN_HTTP`
++ Environment Variable: `PROXY_LISTEN_HTTP`
 + Example: `:80`
 + Required: Yes
 + Default: None
@@ -48,7 +48,7 @@ Usually, we only use `listen` and not set `listen-http`.
 ## `discovery-url`
 
 {{% details %}}
-+ Environment Variable: `DISCOVERY_URL`
++ Environment Variable: `PROXY_DISCOVERY_URL`
 + Example: `https://keycloak.localhost/auth/realms/applications` (refer to [demo](https://github.com/go-gatekeeper/demo-docker-compose))
 + Required: Yes, unless `skip-token-verification` is set, and gatekeeper is in reverse proxy mode
 + Default: None
@@ -76,7 +76,7 @@ Here are links to information about `discovery-url`s for some other OAuth provid
 ## `client-id`
 
 {{% details %}}
-+ Environment Variable: `CLIENT_ID`
++ Environment Variable: `PROXY_CLIENT_ID`
 + Example: `whoami` (refer to [demo](https://github.com/go-gatekeeper/demo-docker-compose))
 + Required: Yes, unless `skip-token-verification` is set, and gatekeeper is in reverse proxy mode
 + Default: None
@@ -114,7 +114,7 @@ the server to get tokens for outbound requests.
 ## `client-secret`
 
 {{% details %}}
-+ Environment Variable: `CLIENT_SECRET`
++ Environment Variable: `PROXY_CLIENT_SECRET`
 + Example: `932475b6-9748-41b8-8fd7-c6ce2d845ece` (refer to [demo](https://github.com/go-gatekeeper/demo-docker-compose))
 + Required: Yes, unless `skip-token-verification` is set, and gatekeeper is in reverse proxy mode
 + Default: None
@@ -130,7 +130,7 @@ credentials. See `client-id` for how this is used.
 ## `redirection-url`
 
 {{% details %}}
-+ Environment Variable: `REDIRECTION_URL`
++ Environment Variable: `PROXY_REDIRECTION_URL`
 + Example: `932475b6-9748-41b8-8fd7-c6ce2d845ece` (refer to [demo](https://github.com/go-gatekeeper/demo-docker-compose))
 + Required: Yes, unless `skip-token-verification` is set, and gatekeeper is in reverse proxy mode
 + Default: None
@@ -146,7 +146,7 @@ credentials. See `client-id` for how this is used.
 ## `revocation-url`
 
 {{% details %}}
-+ Environment Variable: `REVOCATION_URL`
++ Environment Variable: `PROXY_REVOCATION_URL`
 + Example: `https://keycloak.localhost/auth/realms/applications/protocol/openid-connect/logout`
 + Required: No. Will attempt to discover this url from OpenID discovery-url response
 + Default: None
