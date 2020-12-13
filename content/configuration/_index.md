@@ -50,16 +50,16 @@ Usually, we only use `listen` and not set `listen-http`.
 {{% details %}}
 + Environment Variable: `DISCOVERY_URL`
 + Example: `https://keycloak.localhost/auth/realms/applications` (refer to [demo](https://github.com/go-gatekeeper/demo-docker-compose))
-+ Required: Yes, unless `skip-token-verification` is set, and louketo is in reverse proxy mode
++ Required: Yes, unless `skip-token-verification` is set, and gatekeeper is in reverse proxy mode
 + Default: None
 + Related: `skip-openid-provider-tls-verify`, `openid-provider-proxy`, `openid-provider-timeout`
 {{% /details %}}
 
-louketo will get information about the authorization server through the
+gatekeeper will get information about the authorization server through the
 authorization server's `openid-configuration` well-known URI, according to
 [RFC8414](https://tools.ietf.org/html/rfc8414).
 
-louketo will grab this metadata from `discovery-url` + `/.well-known/openid-configuration`
+gatekeeper will grab this metadata from `discovery-url` + `/.well-known/openid-configuration`
 as is registered with [IANA](https://www.iana.org/assignments/well-known-uris/well-known-uris.xhtml)
 
 Specify `discovery-url` without `/.well-known/openid-configuration`.
@@ -78,7 +78,7 @@ Here are links to information about `discovery-url`s for some other OAuth provid
 {{% details %}}
 + Environment Variable: `CLIENT_ID`
 + Example: `whoami` (refer to [demo](https://github.com/go-gatekeeper/demo-docker-compose))
-+ Required: Yes, unless `skip-token-verification` is set, and louketo is in reverse proxy mode
++ Required: Yes, unless `skip-token-verification` is set, and gatekeeper is in reverse proxy mode
 + Default: None
 + Related: `client-secret`
 {{% /details %}}
@@ -88,7 +88,7 @@ this case).
 
 #### In reverse proxy mode
 
-As part of the OAuth2 authorization code flow, louketo will use `client-id` and
+As part of the OAuth2 authorization code flow, gatekeeper will use `client-id` and
 `client-secret` to authenticate with the server when it needs to
 
 + exchange the authorization code for tokens
@@ -106,7 +106,7 @@ among the audiences in the `aud` field of the token.
 
 #### In forward-signing proxy mode
 
-louketo will use louketo `client-id` and `client-secret` to authenticate with
+gatekeeper will use `client-id` and `client-secret` to authenticate with
 the server to get tokens for outbound requests.
 
 ---
@@ -116,7 +116,7 @@ the server to get tokens for outbound requests.
 {{% details %}}
 + Environment Variable: `CLIENT_SECRET`
 + Example: `932475b6-9748-41b8-8fd7-c6ce2d845ece` (refer to [demo](https://github.com/go-gatekeeper/demo-docker-compose))
-+ Required: Yes, unless `skip-token-verification` is set, and louketo is in reverse proxy mode
++ Required: Yes, unless `skip-token-verification` is set, and gatekeeper is in reverse proxy mode
 + Default: None
 + Related: `client-id`
 {{% /details %}}
@@ -132,7 +132,7 @@ credentials. See `client-id` for how this is used.
 {{% details %}}
 + Environment Variable: `REDIRECTION_URL`
 + Example: `932475b6-9748-41b8-8fd7-c6ce2d845ece` (refer to [demo](https://github.com/go-gatekeeper/demo-docker-compose))
-+ Required: Yes, unless `skip-token-verification` is set, and louketo is in reverse proxy mode
++ Required: Yes, unless `skip-token-verification` is set, and gatekeeper is in reverse proxy mode
 + Default: None
 + Related: `client-id`
 {{% /details %}}
@@ -158,7 +158,7 @@ discovery-url response will be used as the `revocation-url`. If neither is
 available, no logout at the authorization provider will be done.
 
 `revocation-url` is used during the logout process. When the `/oauth/logout`
-endpoint on louketo is called, louketo will request revocation of this
+endpoint on gatekeeper is called, gatekeeper will request revocation of this
 session's refresh token by doing an authenticated `POST` to this `revocation-url`
 with the refresh token.
 
@@ -174,11 +174,11 @@ with the refresh token.
 + Related: -
 {{% /details %}}
 
-If `skip-openid-provider-tls-verify` is set to `true`, louketo will skip
+If `skip-openid-provider-tls-verify` is set to `true`, gatekeeper will skip
 verification of the authorization server's (or OpenID provider's, in this case)
 certificate chain and host name.
 
-louketo will accept any certificate presented by the server and any host name
+gatekeeper will accept any certificate presented by the server and any host name
 in that certificate.
 
 This flag is directly used to configure `InsecureSkipVerify` in [golang's tls
