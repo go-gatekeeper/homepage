@@ -163,3 +163,25 @@ session's refresh token by doing an authenticated `POST` to this `revocation-url
 with the refresh token.
 
 ---
+
+## `skip-openid-provider-tls-verify`
+
+{{% details %}}
++ Environment Variable: None
++ Example: `true` or `false`
++ Required: No
++ Default: false
++ Related: -
+{{% /details %}}
+
+If `skip-openid-provider-tls-verify` is set to `true`, louketo will skip
+verification of the authorization server's (or OpenID provider's, in this case)
+certificate chain and host name.
+
+louketo will accept any certificate presented by the server and any host name
+in that certificate.
+
+This flag is directly used to configure `InsecureSkipVerify` in [golang's tls
+package](https://golang.org/pkg/crypto/tls/).
+
+---
