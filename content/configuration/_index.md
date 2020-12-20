@@ -239,3 +239,112 @@ This is used to
   parts of the site
 
 ---
+
+## `oauth-uri`
+
+{{% details %}}
++ Environment Variable: `PROXY_OAUTH_URI`
++ Example: `/base-uri`
++ Required: No
++ Default: `"/oauth"`
++ Related: -
+{{% /details %}}
+
+This is the prefix for the OAuth endpoints on gatekeeper, such as (if the default `/oauth` is used, and `base-uri` is `""`)
+
++ `/oauth/authorization`: Redirects to the authorization server
++ `/oauth/callback`: Handles callback (response) from the authorization server
++ `/oauth/expired`: Checks if the token has expired
++ `/oauth/health`: The healthcheck endpoint for gatekeeper
++ `/oauth/logout?redirect=url`: Direct the browser here to log out
++ `/oauth/token`: Return the token in a json
++ `/oauth/login`: A generic endpoint for clients to perform a user credentials
+  login to the authorization server
+
+---
+
+## `oauth-uri`
+
+{{% details %}}
++ Environment Variable: `PROXY_OAUTH_URI`
++ Example: `/base-uri`
++ Required: No
++ Default: `"/oauth"`
++ Related: -
+{{% /details %}}
+
+This is the prefix for the OAuth endpoints on gatekeeper, such as (if the default `/oauth` is used, and `base-uri` is `""`)
+
++ `/oauth/authorization`: Redirects to the authorization server
++ `/oauth/callback`: Handles callback (response) from the authorization server
++ `/oauth/expired`: Checks if the token has expired
++ `/oauth/health`: The healthcheck endpoint for gatekeeper
++ `/oauth/logout?redirect=url`: Direct the browser here to log out
++ `/oauth/token`: Return the token in a json
++ `/oauth/login`: A generic endpoint for clients to perform a user credentials
+  login to the authorization server
+
+---
+
+## `scopes`
+
+{{% details %}}
++ Environment Variable: None
++ Example: (yaml/json list) `["offline", "foobar"]`
++ Required: No
++ Default: Always appends these: `["openid", "email", "profile"]`
++ Related: -
+{{% /details %}}
+
+These are the scopes that are requested when the client is redirected to the authorization server.
+
+In Keycloak, these are the scopes that are either created as part of the
+client, to client scopes in the realm. For Keycloak, scopes are strings tagged
+to mappers. If requested by the client, the associated mappers will be applied
+on the tokens.
+
+---
+
+## `upstream-url`
+
+{{% details %}}
++ Environment Variable: `PROXY_UPSTREAM_URL`
++ Example: `http://whoami:80` (refer to [demo](https://github.com/go-gatekeeper/demo-docker-compose))
++ Required: Yes
++ Default: None
++ Related: `upstream-ca`
+{{% /details %}}
+
+This tells gatekeeper how to contact the upstream (your app/service that is protected by gatekeeper)
+
+---
+
+## `upstream-ca`
+
+{{% details %}}
++ Environment Variable: None
++ Example: `/tmp/path-to-ca-cert` (PEM encoded)
++ Required: No
++ Default: None (Will use system cert store)
++ Related: `upstream-url`
+{{% /details %}}
+
+This is the TLS CA certificate that will be used to verify TLS when communicating with the upstream.
+
+---
+
+## `resources`
+
+{{% details %}}
++ Environment Variable: None
++ Example: Refer to [demo](https://github.com/go-gatekeeper/demo-docker-compose)
++ Required: Yes
++ Default: None
++ Related: -
+{{% /details %}}
+
+These tell gatekeeper how to authenticate or authorize the resources at the upstream.
+
+TODO add more details.
+
+---
