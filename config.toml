@@ -1,4 +1,4 @@
-baseURL = "https://go-gatekeeper.github.io/"
+baseURL = "https://gogatekeeper.github.io/"
 languageCode = "en-us"
 title = "Gatekeeper"
 
@@ -33,7 +33,7 @@ home = [ "HTML", "RSS", "JSON"]
 # See the config.toml file from this documentation site to have an example.
 editURL = ""
 # Author of the site, will be used in meta information
-author = "go-gatekeeper"
+author = "gogatekeeper"
 # Description of the site, will be used in meta information
 description = "Gatekeeper's homepage"
 # Shows a checkmark for visited pages on the menu
@@ -72,7 +72,7 @@ titleSeparator = "-"
 [[menu.shortcuts]]
 name = "<i class='fab fa-github fa-fw'></i> Github repo"
 identifier = "ds"
-url = "https://github.com/go-gatekeeper/gatekeeper"
+url = "https://github.com/gogatekeeper/gatekeeper"
 weight = 10
 
 [[menu.shortcuts]]

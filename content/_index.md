@@ -16,7 +16,7 @@ gatekeeper is the simple authentication and authorization proxy that gets your a
 
 gatekeeper is reborn with from the ashes of
 [louketo](https://github.com/louketo/louketo-proxy/) under the new organization
-[go-gatekeeper](https://github.com/go-gatekeeper/).
+[gogatekeeper](https://github.com/gogatekeeper/).
 
 In the next few months, we will be working to
 

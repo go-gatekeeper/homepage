@@ -49,7 +49,7 @@ Usually, we only use `listen` and not set `listen-http`.
 
 {{% details %}}
 + Environment Variable: `PROXY_DISCOVERY_URL`
-+ Example: `https://keycloak.localhost/auth/realms/applications` (refer to [demo](https://github.com/go-gatekeeper/demo-docker-compose))
++ Example: `https://keycloak.localhost/auth/realms/applications` (refer to [demo](https://github.com/gogatekeeper/demo-docker-compose))
 + Required: Yes, unless `skip-token-verification` is set, and gatekeeper is in reverse proxy mode
 + Default: None
 + Related: `skip-openid-provider-tls-verify`, `openid-provider-proxy`, `openid-provider-timeout`
@@ -77,7 +77,7 @@ Here are links to information about `discovery-url`s for some other OAuth provid
 
 {{% details %}}
 + Environment Variable: `PROXY_CLIENT_ID`
-+ Example: `whoami` (refer to [demo](https://github.com/go-gatekeeper/demo-docker-compose))
++ Example: `whoami` (refer to [demo](https://github.com/gogatekeeper/demo-docker-compose))
 + Required: Yes, unless `skip-token-verification` is set, and gatekeeper is in reverse proxy mode
 + Default: None
 + Related: `client-secret`
@@ -115,7 +115,7 @@ the server to get tokens for outbound requests.
 
 {{% details %}}
 + Environment Variable: `PROXY_CLIENT_SECRET`
-+ Example: `932475b6-9748-41b8-8fd7-c6ce2d845ece` (refer to [demo](https://github.com/go-gatekeeper/demo-docker-compose))
++ Example: `932475b6-9748-41b8-8fd7-c6ce2d845ece` (refer to [demo](https://github.com/gogatekeeper/demo-docker-compose))
 + Required: Yes, unless `skip-token-verification` is set, and gatekeeper is in reverse proxy mode
 + Default: None
 + Related: `client-id`
@@ -131,7 +131,7 @@ credentials. See `client-id` for how this is used.
 
 {{% details %}}
 + Environment Variable: `PROXY_REDIRECTION_URL`
-+ Example: `932475b6-9748-41b8-8fd7-c6ce2d845ece` (refer to [demo](https://github.com/go-gatekeeper/demo-docker-compose))
++ Example: `932475b6-9748-41b8-8fd7-c6ce2d845ece` (refer to [demo](https://github.com/gogatekeeper/demo-docker-compose))
 + Required: Yes, unless `skip-token-verification` is set, and gatekeeper is in reverse proxy mode
 + Default: None
 + Related: `client-id`
@@ -309,7 +309,7 @@ on the tokens.
 
 {{% details %}}
 + Environment Variable: `PROXY_UPSTREAM_URL`
-+ Example: `http://whoami:80` (refer to [demo](https://github.com/go-gatekeeper/demo-docker-compose))
++ Example: `http://whoami:80` (refer to [demo](https://github.com/gogatekeeper/demo-docker-compose))
 + Required: Yes
 + Default: None
 + Related: `upstream-ca`
@@ -337,7 +337,7 @@ This is the TLS CA certificate that will be used to verify TLS when communicatin
 
 {{% details %}}
 + Environment Variable: None
-+ Example: Refer to [demo](https://github.com/go-gatekeeper/demo-docker-compose)
++ Example: Refer to [demo](https://github.com/gogatekeeper/demo-docker-compose)
 + Required: Yes
 + Default: None
 + Related: -
