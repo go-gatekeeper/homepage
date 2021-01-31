@@ -787,20 +787,6 @@ The access token expiration is normally read from the refresh token, but if that
 
 ---
 
-## `client-auth-method`
-
-{{% details %}}
-+ Environment Variable: `PROXY_CLIENT_AUTH_METHOD`
-+ Example: `secret-basic` or `secret-body` (only 2 options)
-+ Required: No
-+ Default: `secret-basic`
-+ Related: -
-{{% /details %}}
-
-Defines how gatekeeper will authenticate with the authorization server. TODO check if this is being used.
-
----
-
 ## `cookie-domain`
 
 {{% details %}}
