@@ -3,6 +3,15 @@ title: "Configuration Options"
 weight: 1
 ---
 
+These configuration options can either be defined
+
++ as a command line parameter (use `--kebab-case-config-option`)
++ in a yaml/json file (use `kebab-case-keys`)
++ through environment variables (only for those where environment variables are defined below)
+
+Options issued at the command line have a higher priority and will override or
+merge with options referenced in a config file.
+
 ## `listen`
 
 {{% details %}}
@@ -340,12 +349,51 @@ This is the TLS CA certificate that will be used to verify TLS when communicatin
 + Example: Refer to [demo](https://github.com/gogatekeeper/demo-docker-compose)
 + Required: Yes
 + Default: None
-+ Related: -
++ Related: `enable-default-deny`
 {{% /details %}}
 
 These tell gatekeeper how to authenticate or authorize the resources at the upstream.
 
-TODO add more details.
+Here's an example: (yaml config)
+
+```
+# Deny any access that is not allowlisted on the list of resources here
+enable-default-deny: true
+
+# Think of this as an allowlist
+resources:
+- uri: /admin/test
+  # Defines HTTP methods on the above uri that are allowed.
+  # If methods is not defined, gatekeeper allows all methods
+  methods:
+  - GET
+  # Defineds a list of roles the user must have in order to access the above uri
+  # If you only want authentication, don't define any roles
+  # gatekeeper will then check for the access token but not roles
+  roles:
+  - openvpn:vpn-user
+  - openvpn:prod-vpn
+  - test
+- uri: /admin/*
+  # Wildcards are allowed!
+  methods:
+  - GET
+  roles:
+  - openvpn:vpn-user
+  - openvpn:commons-prod-vpn
+```
+
+If you wish to ensure all requests are authenticated you can use this:
+
+``` bash
+--resource=uri=/*
+```
+
+> Unless specified the method is assumed to be 'any|ANY'
+
+The HTTP routing rules follow the guidelines from
+[chi](https://github.com/go-chi/chi#router-design). The ordering of the
+resources does not matter, the router will handle that for you.
 
 ---
 
@@ -565,7 +613,7 @@ Set this to get gatekeeper to handle refreshing of access tokens. Otherwise, gat
 + Related: -
 {{% /details %}}
 
-If this is set, gatekeeper will define the lifetime of the cookies (containing access and refresh tokens) to "Session", indicating that they should be cleared when the browser closes.
+If this is set, gatekeeper will define the lifetime of the cookies (containing access and refresh tokens) to "Session", indicting that they should be cleared when the browser closes.
 
 The actual behavior, however, depends on how the browser is configured. Some browsers restore sessions when restarting, so session cookies might get restored. See [MDN: Lifetime of a cookie](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#Define_the_lifetime_of_a_cookie).
 
@@ -1013,6 +1061,10 @@ forward and reverse proxy mode.
 This path is watched for changes and gatekeeper will pick up new certificate
 files.
 
+No downtime is expected for certificate rotations. Clients who connected before
+the certificate rotation will be unaffected and will continue as normal with
+all new connections presented with the new certificate.
+
 ---
 
 ## `tls-private-key`
@@ -1047,6 +1099,9 @@ files.
 `tls-ca-certificate` is the path to a PEM encoded certificate file. This allows
 gatekeeper to sign a TLS certificate for itself, using this
 `tls-ca-certificate` and `tls-ca-key`.
+
+Specify this to enforce mutual TLS: all clients connecting to gatekeeper must
+present a certificate that was signed by the CA with `tls-ca-certificate`.
 
 > TODO: verify if this CA cert/key only used for `CONNECT`?
 
